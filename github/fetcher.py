@@ -7,7 +7,7 @@ def parseJSON(string):
 	return json.loads(string.decode('utf-8'))
 
 
-class Github:
+class Fetcher:
 	__TOKEN = "093621273f42838ff5df605d262bb4fbf72795ee"
 	__API_URL = "www.api.github.com"
 	__AUTH_HEADERS = {
@@ -28,6 +28,7 @@ class Github:
 		print("Rate limit, remaining = {remaining}, seconds to reset = {reset}"
 			.format(remaining=self.rate_limit_remaining,
 					reset=remaining_seconds))
+
 
 	def get(self, url, params=None):
 		self.__log_rate()
@@ -50,14 +51,18 @@ class Github:
 		print("Response from GET: {url} | code: {code}".format(url = url, code = res.status))
 		return parseJSON(res.read())
 
+
 	def get_user_repos(self):
 		"""https://developer.github.com/v3/repos/#list-your-repositories"""
 		return self.get('/user/repos')
 
-	def get_most_popular_javascript_repos(self):
+
+	def get_most_popular_javascript_repos(self, page=1):
 		"""https://developer.github.com/v3/search/#search-repositories"""
-		return self.get('/search/repositories', params={
+		return self.get('/search/repositories'.format(page), params={
 			'q': 'language:javascript',
-			'sort': 'stars'
+			'sort': 'stars',
+			'page': page,
+			'per_page': 100
 			})['items']
 

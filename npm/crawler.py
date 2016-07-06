@@ -1,26 +1,9 @@
 import scrapy
-import json
 from scrapy.crawler import CrawlerProcess
 from scrapy.selector import Selector
 from scrapy.settings import Settings
+import NPMRepo
 import pprint
-
-
-class NPMRepo(scrapy.Item):
-    title = scrapy.Field()
-    link = scrapy.Field()
-    github = scrapy.Field()
-    month_downloads = scrapy.Field()
-
-
-class JsonWritePipeline(object):
-    def __init__(self):
-        self.file = open('items.json', 'w')
-
-    def process_item(self, item, spider):
-        line = json.dumps(dict(item)) + "\n"
-        self.file.write(line)
-        return item
 
 
 class NPMSpider(scrapy.Spider):
@@ -31,7 +14,7 @@ class NPMSpider(scrapy.Spider):
 
     custom_settings = {
         'ITEM_PIPELINES' : {
-            'npm.JsonWritePipeline': 1,
+            'JsonWritePipeline.JsonWritePipeline': 1,
         },
         'DOWNLOAD_DELAY': 0.5,
     }
@@ -71,11 +54,11 @@ class NPMSpider(scrapy.Spider):
         return item
 
 
-process = CrawlerProcess({
-    'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)',
-    'LOG_ENABLED': False
-})
 
-
-process.crawl(NPMSpider)
-process.start()
+if __name__ == "__main__":
+    process = CrawlerProcess({
+        'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)',
+        'LOG_ENABLED': False
+    })
+    process.crawl(NPMSpider)
+    process.start()
