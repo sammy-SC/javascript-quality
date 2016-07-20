@@ -1,7 +1,8 @@
 import scrapy
 
-class NPMRepo(scrapy.Item):
+class Repo(scrapy.Item):
     title = scrapy.Field()
-    link = scrapy.Field()
     github = scrapy.Field()
-    month_downloads = scrapy.Field()
+    monthly_downloads = scrapy.Field()
+    weekly_downloads = scrapy.Field()
+    daily_downloads = scrapy.Field()
