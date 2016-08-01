@@ -45,10 +45,12 @@ Data sources for more information
 - [x] open issues count -> github API
 - [x] size -> github API
 - [x] subsribers count -> github API
-- [ ] number of dependencies
-- [ ] has readme -> ?
-- [ ] has stable release -> ?
-- [ ] test coverage -> ?
+- [ ] number of dependencies -> npm API
+- [ ] mainteners counter -> npm API
+- [ ] contributors counter -> npm API
+- [ ] has readme -> npm API
+- [ ] has stable release -> npm API
+- [ ] has tests -> npm API
 - [ ] has linter -> ?
 - [ ] code complexity -> ?
 - [ ] issues, how fast they are attended and closed -> github archive
