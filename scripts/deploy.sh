@@ -4,4 +4,7 @@ ADDR=$HOST:/home/ubuntu/jmq
 USER=ubuntu
 OPTIONS='-azP --delete'
 
-rsync $OPTIONS --exclude 'data/' . $USER@$ADDR
+rsync $OPTIONS\
+ --exclude 'data/'\
+ --exclude '\.*'\
+ . $USER@$ADDR
