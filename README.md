@@ -24,3 +24,32 @@ CommitCommentEvent | Triggered when a commit comment is created.
 ReleaseEvent | Triggered when a release is published.
 WatchEvent | The WatchEvent is related to starring a repository, not watching.
 MemberEvent | Triggered when a user is added as a collaborator to a repository.
+
+
+## Sources
+
+Data sources for more information
+
+- https://github.com/npm/download-counts -> getting download counts for particular package
+- http://registry.npmjs.org/-/all -> returns all packages on NPM roughly 250 000 and size of the json is 175 mbs
+- http://registry.npmjs.org/{package-name} -> returns json for specific package
+- http://npm-stat.com -> has stats about packages
+- http://www.npm-stats.com -> more stats about packages
+- github API
+- github archive
+
+
+## Data -> Source
+- [x] stargazers count -> github API
+- [x] forks count -> github API
+- [x] open issues count -> github API
+- [x] size -> github API
+- [x] subsribers count -> github API
+- [ ] number of dependencies
+- [ ] has readme -> ?
+- [ ] has stable release -> ?
+- [ ] test coverage -> ?
+- [ ] has linter -> ?
+- [ ] code complexity -> ?
+- [ ] issues, how fast they are attended and closed -> github archive
+- [ ] commits, frequency and size -> github archive
