@@ -1,3 +1,7 @@
+"""
+Crawler pipeline to save scrapped data from web into json file
+"""
+
 
 class JsonWritePipeline(object):
     def __init__(self):
@@ -5,10 +9,9 @@ class JsonWritePipeline(object):
 
     def process_item(self, item, spider):
         line = "{}, {}, {}, {}, {}\n".format(item["title"],
-                    item["github"],
-                    item["monthly_downloads"],
-                    item["weekly_downloads"],
-                    item["daily_downloads"])
-
+                                             item["github"],
+                                             item["monthly_downloads"],
+                                             item["weekly_downloads"],
+                                             item["daily_downloads"])
         self.file.write(line)
         return item

@@ -1,3 +1,7 @@
+"""
+Originally we were crawling https://www.npmjs.com to get package information, this package is not used anymore
+"""
+
 import scrapy
 from scrapy.crawler import CrawlerProcess
 from NPMRepo import Repo
@@ -8,19 +12,18 @@ def log(message):
     time = strftime("%H:%M:%S | %m.%d", gmtime())
     print("{time}: \t {message}".format(time=time, message=message))
 
+
 class NPMSpider(scrapy.Spider):
     name = 'NPM'
     # last offset 4176
     start_urls = ['https://www.npmjs.com/browse/star']
 
-
     custom_settings = {
-        'ITEM_PIPELINES' : {
+        'ITEM_PIPELINES': {
             'JsonWritePipeline.JsonWritePipeline': 1,
         },
         'DOWNLOAD_DELAY': 0.5,
     }
-
 
     def parse(self, response):
         for href in response.css('.package-details h3 a::attr(href)'):
@@ -37,7 +40,6 @@ class NPMSpider(scrapy.Spider):
         else:
             log('Done, no more pages')
 
-
     def parse_npm_repo_page(self, response):
         log('Parsing: {}'.format(response.url))
         item = Repo()
@@ -52,7 +54,6 @@ class NPMSpider(scrapy.Spider):
         item['weekly_downloads'] = response.css('strong.weekly-downloads::text').extract_first()
 
         return item
-
 
 
 if __name__ == "__main__":

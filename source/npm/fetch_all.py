@@ -1,10 +1,15 @@
+"""
+functions to fetch general info about all node packages from npmjs.org
+"""
 import http.client
 import json
 import os
 import pickle
 
+# save_destination - where pickled information is cached about each package
 save_destination = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                                 '..', '..', 'data', 'npm_all.pickled'))
+
 
 def _download_registry():
     '''
@@ -49,7 +54,7 @@ def load_data():
         else:
             return _load_picked()
     else:
-        print('No cached version find, need to redownload')
+        print('No cached version found, need to download')
         data = _download_registry()
         return _process_data(data)
 
@@ -74,9 +79,7 @@ def _process_data(data):
         maintainers_count = len(v.get('maintainers', []))
         license = v.get('license')
 
-        if ('url' in v.get('repository', []) and
-            'github.com' in v.get('repository').get('url')):
-
+        if ('url' in v.get('repository', []) and 'github.com' in v.get('repository').get('url')):
             split_url = v.get('repository').get('url').split('/')
 
             if len(split_url) >= 2:

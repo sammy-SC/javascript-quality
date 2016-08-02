@@ -1,3 +1,7 @@
+'''
+script loads general info about all packages and then starts to
+request more data about individual packages from npm. Results are saved into DB
+'''
 import fetch_all
 import http.client
 import json
@@ -13,6 +17,9 @@ except:
 
 
 def fetch_individual():
+    '''
+    fetches individual info about packages and saves result into DB
+    '''
     counter = 0
     all_data = fetch_all.load_data()
 
