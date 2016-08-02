@@ -1,5 +1,10 @@
 # javascript quality
 
+## To reproduce this experiment
+
+### Following dependencies
+- Postgresql 9.5
+- Python 3.5
 
 
 
