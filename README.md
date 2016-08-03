@@ -1,5 +1,11 @@
 # javascript quality
 
+## Project structure
+- folder `jupyter` contains jupyter notebooks used to analyze the data
+- folder `sources` contains scripts used to load the data from various sources
+- folder `sripts` contains helper scripts to manage the project
+
+
 ## To reproduce this experiment
 
 ### Following dependencies
@@ -38,9 +44,9 @@ Data sources for more information
 - https://github.com/npm/download-counts -> getting download counts for particular package
 - http://registry.npmjs.org/-/all -> returns all packages on NPM roughly 250 000 and size of the json is 175 mbs
 - http://registry.npmjs.org/{package-name} -> returns json for specific package
-- http://npm-stat.com -> has stats about packages
-- http://www.npm-stats.com -> more stats about packages
-- github API
+- http://npm-stat.com -> has download stats about packages, probably just UI built on top of https://github.com/npm/download-counts
+- http://www.npm-stats.com -> same as above
+- github API -> contains metadata about packages
 - github archive
 
 
@@ -56,6 +62,7 @@ Data sources for more information
 - [ ] has readme -> npm API
 - [ ] has stable release -> npm API
 - [ ] has tests -> npm API
+- [ ] downloads count -> npm download API
 - [ ] has linter -> ?
 - [ ] code complexity -> ?
 - [ ] issues, how fast they are attended and closed -> github archive
