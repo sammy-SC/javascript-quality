@@ -51,18 +51,19 @@ Data sources for more information
 
 
 ## Data -> Source
+List of what I have been able to get so far
 - [x] stargazers count -> github API
 - [x] forks count -> github API
 - [x] open issues count -> github API
 - [x] size -> github API
 - [x] subsribers count -> github API
-- [ ] number of dependencies -> npm API
-- [ ] mainteners counter -> npm API
-- [ ] contributors counter -> npm API
-- [ ] has readme -> npm API
+- [x] number of dependencies -> npm API
+- [x] mainteners counter -> npm API
+- [x] contributors counter -> npm API
+- [x] has readme -> npm API
 - [ ] has stable release -> npm API
-- [ ] has tests -> npm API
-- [ ] downloads count -> npm download API
+- [x] has tests -> npm API
+- [x] downloads count -> npm download API
 - [ ] has linter -> ?
 - [ ] code complexity -> ?
 - [ ] issues, how fast they are attended and closed -> github archive
