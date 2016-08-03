@@ -6,9 +6,9 @@ try:
     host = env('db.host', 'localhost')
     db = env('db.name', 'ubuntu')
     user = env('db.user', 'ubuntu')
-    connect_str = "dbname='{}' user='{}' host='{}' ".format(db, user, host)
+    connect_str = "dbname='{}' user='{}' host='{}'".format(db, user, host)
+    print(connect_str)
     conn = psycopg2.connect(connect_str)
-    cur = conn.cursor()
     print('Connected to DB')
 
 except Exception as e:
@@ -19,12 +19,14 @@ except Exception as e:
 def execute(query, parameters):
     '''
     '''
+    cur = conn.cursor()
     cur.execute(query, parameters)
     conn.commit()
 
 
-def fetch(query):
+def fetch(query, parameters=None):
     '''
     '''
-    cur.execute(query)
-    return cur.fetchall()
+    cur = conn.cursor()
+    cur.execute(query, parameters)
+    return cur
