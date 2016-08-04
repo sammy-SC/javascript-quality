@@ -1,26 +1,43 @@
-from helpers.db import insert
-import glob
-import json
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+from oauth2client.client import GoogleCredentials
 
-destination = '/Users/samuelsusla/Downloads/repos/**/*.json'
-packages = glob.iglob(destination, recursive=True)
 
-for filepath in packages:
-    with open(filepath) as file:
-        data = json.load(file)
-        params = (
-            data.get('stargazers_count'),
-            data.get('forks_count'),
-            data.get('open_issues_count'),
-            data.get('size'),
-            data.get('subscribers_count'),
-            data.get('id'),
-            data.get('name'),
-            data.get('owner').get('login')
-        )
+def main(project_id):
+    # [START build_service]
+    # Grab the application's default credentials from the environment.
+    credentials = GoogleCredentials.get_application_default()
+    # Construct the service object for interacting with the BigQuery API.
+    bigquery_service = build('bigquery', 'v2', credentials=credentials)
+    # [END build_service]
 
-        insert('''
-            INSERT INTO repos (stargazers_count, forks_count,
-            open_issues_count, size, subscribers_count, github_id, name, owner)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s);
-        ''', params)
+    try:
+        # [START run_query]
+        query_request = bigquery_service.jobs()
+        query_data = {
+            'query':
+                '''
+                SELECT type, created_at
+                FROM [githubarchive:year.2015]
+                LIMIT 10;
+                '''
+        }
+
+        query_response = query_request.query(
+            projectId=project_id,
+            body=query_data).execute()
+        # [END run_query]
+
+        # [START print_results]
+        print('Query Results:')
+        for row in query_response['rows']:
+            print('\t'.join(field['v'] for field in row['f']))
+        # [END print_results]
+
+    except HttpError as err:
+        print('Error: {}'.format(err.content))
+        raise err
+
+
+if __name__ == '__main__':
+    main("javascript-module-quality")

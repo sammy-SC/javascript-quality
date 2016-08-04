@@ -1,13 +1,12 @@
-import psycopg2
 from source.helpers.env import env
+import psycopg2
 
 
 try:
-    host = env('db.host', 'localhost')
+    host = env('db.host', '192.168.130.181')
     db = env('db.name', 'ubuntu')
     user = env('db.user', 'ubuntu')
     connect_str = "dbname='{}' user='{}' host='{}'".format(db, user, host)
-    print(connect_str)
     conn = psycopg2.connect(connect_str)
     print('Connected to DB')
 
