@@ -69,3 +69,10 @@ List of what I have been able to get so far
 - [ ] code complexity -> ?
 - [ ] issues, how fast they are attended and closed -> github archive
 - [ ] commits, frequency and size -> github archive
+
+# Trips and tricks from Borovicka and Kordik (10.8.2016)
+- look at popular packages what examine what features makes them popular
+- try to split packages into 2 groups at first and classify what group it belongs to
+- try basic classification algorithms to see whether we will get an improvement over random guessing, 5% to 10% is already a good result
+- a way to split packages would be to look at mean of popularity feature and variance, and have packages that are above and below this
+- they also mentioned that noisy data is expected
