@@ -48,6 +48,7 @@ Data sources for more information
 - http://www.npm-stats.com -> same as above
 - github API -> contains metadata about packages
 - github archive
+- http://ghtorrent.org -> mirror data from Github REST API
 
 
 ## Data -> Source
