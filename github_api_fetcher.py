@@ -6,14 +6,14 @@ from npm_fetch_all import load_data
 
 
 class Repo:
-	def __init__(self, data):
-		self.id = data["id"]
-		self.forks_count = data["forks_count"]
-		self.open_issues_count = data["open_issues_count"]
-		self.stargazers_count = data["stargazers_count"]
-		self.watchers_count = data["watchers_count"]
-		self.network_count = data["network_count"]
-		self.full_name = data["full_name"]
+    def __init__(self, data):
+        self.id = data["id"]
+        self.forks_count = data["forks_count"]
+        self.open_issues_count = data["open_issues_count"]
+        self.stargazers_count = data["stargazers_count"]
+        self.watchers_count = data["watchers_count"]
+        self.network_count = data["network_count"]
+        self.full_name = data["full_name"]
 
 gh = Fetcher()
 
@@ -36,7 +36,8 @@ print("Left to load: ", len(data))
 for i, e in enumerate(data):
     owner = e.get('owner')
     repo_name = e.get('github_repo_name')
-    if not owner or not repo_name: continue
+    if not owner or not repo_name:
+        continue
 
     print("owner: {}, name: {} -- {} / {}".format(owner, repo_name, i, len(data)))
 
@@ -46,15 +47,14 @@ for i, e in enumerate(data):
         print("Unexpected error: ", sys.exc_info()[0])
         continue
 
-    if not result: continue
+    if not result:
+        continue
 
     target_directory = 'data/repos/{}'.format(owner)
-    target_filepath = 'data/repos/{}/{}.json'.format(owner,repo_name)
+    target_filepath = 'data/repos/{}/{}.json'.format(owner, repo_name)
 
     if not os.path.exists(target_directory):
         os.makedirs(target_directory)
 
     with open(target_filepath, 'wb') as f:
         f.write(result)
-
-
