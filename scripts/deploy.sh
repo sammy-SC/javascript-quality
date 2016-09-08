@@ -5,6 +5,5 @@ USER=ubuntu
 OPTIONS='-azP --delete'
 
 rsync $OPTIONS\
- --exclude 'data/'\
  --exclude '\.*'\
  . $USER@$ADDR
