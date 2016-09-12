@@ -1,4 +1,3 @@
-import pprint
 import os
 import sys
 from github.fetcher import Fetcher

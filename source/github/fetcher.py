@@ -87,3 +87,6 @@ class Fetcher:
             'page': page,
             'per_page': 100
         })['items']
+
+    def get_commits(self, owner, repo):
+        return self.get('/repos/{}/{}/commits'.format(owner, repo))
