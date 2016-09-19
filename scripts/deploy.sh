@@ -6,4 +6,5 @@ OPTIONS='-azP --delete'
 
 rsync $OPTIONS\
  --exclude '\.*'\
+ --exclude 'bare_repos'\
  . $USER@$ADDR

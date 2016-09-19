@@ -15,12 +15,23 @@ except Exception as e:
     print(e)
 
 
+def get_connection():
+    return conn
+
+
+def execute_without_commit(query, parameters):
+    cur = conn.cursor()
+    cur.execute(query, parameters)
+    cur.close()
+
+
 def execute(query, parameters):
     '''
     '''
     cur = conn.cursor()
     cur.execute(query, parameters)
     conn.commit()
+    cur.close()
 
 
 def fetch(query, parameters=None):
