@@ -1,3 +1,9 @@
+'''
+- fetches all repos without commits from database
+- loads bare repo from github
+- extracts commit data from it and saves it into database
+- deletes bare repo
+'''
 import source.helpers.db as db
 from git import Repo
 import os
